@@ -573,8 +573,8 @@ p.UpdateTheme(nil,false)
 end
 
 function p.AddFontObject(r)
-table.insert(p.FontObjects,r)
-p.UpdateFont(p.Font)
+    table.insert(p.FontObjects, r)
+    r.FontFace = Font.new(p.Font, r.FontFace.Weight, r.FontFace.Style)
 end
 
 function p.UpdateFont(r)

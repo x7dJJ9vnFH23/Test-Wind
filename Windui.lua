@@ -1,9 +1,8 @@
 -- WindUI Boreal
--- Version: v0.0.1
--- BuildDate: 2026-02-23
+-- Version: v0.0.2
+-- BuildDate: 2026-04-18
 -- Description: Roblox UI Library for scripts
--- Repository: https://github.com/orialdev/WindUI-Boreal
--- Discord: http://discord.gg/B3dEqP2EX6
+-- Discord: http://discord.gg/pEzmU5Argx
 -- License: MIT
 
 local a={cache={}::any}do do local function __modImpl()local b=(cloneref or clonereference or function(b)return b end)
@@ -970,6 +969,7 @@ end
 
 local function update(H)
 if not B or not G.CanDraggable then return end
+if not F or not C then return end
 
 local J=H.Position-C
 p.Tween(v,0.02,{Position=UDim2.new(
@@ -985,7 +985,7 @@ if A==nil then
 A=J
 B=true
 C=L.Position
-F=v.Position
+F=v.Position or UDim2.new(0.5,0,0.5,0)
 
 if z and typeof(z)=="function"then
 z(true,A)
@@ -5710,7 +5710,7 @@ aj.Visible=ar.Draggable
 ak.Visible=ar.Draggable
 
 if ao then
-ao:Set(ar.Draggable)
+ao:Set(false)
 end
 end
 
@@ -8028,6 +8028,7 @@ end
 local ax=aj.Tab.UIElements.ContainerFrame
 
 function ak.Set(ay,az,aA)
+if az == nil then return end
 if ar then
 if not ak.IsFocusing and not ah and(not aA or(aA.UserInputType==Enum.UserInputType.MouseButton1 or aA.UserInputType==Enum.UserInputType.Touch))then
 if aA then
@@ -8047,7 +8048,10 @@ ak.UIElements.SliderContainer.TextBox.Text=FormatValue(az)
 if aw then aw.TitleFrame.Text=FormatValue(az)end
 ak.Value.Default=FormatValue(az)
 ap=az
-ad.SafeCallback(ak.Callback,FormatValue(az))
+local fv = FormatValue(az)
+if fv ~= nil then
+    ad.SafeCallback(ak.Callback, fv)
+end
 end
 
 am=ac.RenderStepped:Connect(function()
@@ -8063,7 +8067,10 @@ ak.UIElements.SliderContainer.TextBox.Text=FormatValue(az)
 if aw then aw.TitleFrame.Text=FormatValue(az)end
 ak.Value.Default=FormatValue(az)
 ap=az
-ad.SafeCallback(ak.Callback,FormatValue(az))
+local fv = FormatValue(az)
+if fv ~= nil then
+    ad.SafeCallback(ak.Callback, fv)
+end
 end
 end)
 
@@ -8096,7 +8103,10 @@ ak.UIElements.SliderContainer.TextBox.Text=FormatValue(az)
 if aw then aw.TitleFrame.Text=FormatValue(az)end
 ak.Value.Default=FormatValue(az)
 ap=az
-ad.SafeCallback(ak.Callback,FormatValue(az))
+local fv = FormatValue(az)
+if fv ~= nil then
+    ad.SafeCallback(ak.Callback, fv)
+end
 end
 end
 end
@@ -18717,26 +18727,6 @@ R.AutomaticSize=Enum.AutomaticSize.Y
 for V,W in ipairs(S)do
 W.Size=UDim2.new(1,0,0,40)
 W.AutomaticSize=Enum.AutomaticSize.None
-end
-else
-local V=U-T
-if V>0 then
-local W
-local X=math.huge
-
-for Y,_ in ipairs(S)do
-local aC=_.AbsoluteSize.X/au.WindUI.UIScale
-if aC<X then
-X=aC
-W=_
-end
-end
-
-if W then
-W.Size=UDim2.new(0,X+V,1,0)
-W.AutomaticSize=Enum.AutomaticSize.None
-end
-end
 end
 end
 

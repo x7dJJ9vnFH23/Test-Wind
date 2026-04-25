@@ -18729,6 +18729,7 @@ W.Size=UDim2.new(1,0,0,40)
 W.AutomaticSize=Enum.AutomaticSize.None
 end
 end
+end
 
 ai.AddSignal(N.UIElements.Main:GetPropertyChangedSignal"AbsoluteSize",CheckButtonsOverflow)
 CheckButtonsOverflow()
